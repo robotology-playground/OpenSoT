@@ -60,7 +60,8 @@ public:
     CollisionAvoidance(const XBot::ModelInterface& robot,
                        int max_pairs = -1,
                        urdf::ModelConstSharedPtr collision_urdf = nullptr,
-                       srdf::ModelConstSharedPtr collision_srdf = nullptr);
+                       srdf::ModelConstSharedPtr collision_srdf = nullptr,
+                       bool skip_infeasible_pairs = true);
 
     /**
      * @brief getLinkPairThreshold distance offset between two link pairs
@@ -202,6 +203,11 @@ protected:
      * @brief _max_pairs
      */
     int _max_pairs;
+
+    /**
+     * @brief _skip_infeasible_pairs
+     */
+    bool _skip_infeasible_pairs;
 
     /**
      * @brief _robot
