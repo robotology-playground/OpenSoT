@@ -25,13 +25,15 @@ CollisionAvoidance::CollisionAvoidance(
         const XBot::ModelInterface& robot,
         int max_pairs,
         urdf::ModelConstSharedPtr collision_urdf,
-        srdf::ModelConstSharedPtr collision_srdf):
+        srdf::ModelConstSharedPtr collision_srdf,
+        bool skip_infeasible_pairs):
     Constraint("self_collision_avoidance", robot.getNv()),
     _detection_threshold(std::numeric_limits<double>::max()),
     _distance_threshold(0.001),
     _robot(robot),
     _bound_scaling(1.0),
-    _max_pairs(max_pairs)
+    _max_pairs(max_pairs),
+    _skip_infeasible_pairs(skip_infeasible_pairs)
 {
     // enable collisions vs env
     _include_env = true;
@@ -110,11 +112,14 @@ void CollisionAvoidance::update()
     _distance_J.setZero(_dist_calc->getNumCollisionPairs(_include_env), _distance_J.cols());
     _distances.setZero(_distance_J.rows());
 
+
     // compute distances
     _dist_calc->computeDistance(_distances, _include_env, _detection_threshold);
 
     // compute jacobians
     _dist_calc->getDistanceJacobian(_distance_J, _include_env);
+
+    const auto& pairs = _dist_calc->getCollisionPairs(_include_env);
 
     // populate Aineq and bUpperBound
     int row_idx = 0;
@@ -131,6 +136,7 @@ void CollisionAvoidance::update()
             continue;
         }
 
+
         // DeltaD = J*dq -> DeltaD > -(d - dmin) -> -J*dq < (d - dmin)
 
         _Aineq.row(row_idx) = -_distance_J.row(i);
@@ -138,7 +144,7 @@ void CollisionAvoidance::update()
 
         // to avoid infeasibilities, cap upper bound to zero
         // (i.e. don't change current distance if in collision)
-        if(_bUpperBound(row_idx) < 0.0)
+        if(_skip_infeasible_pairs && _bUpperBound(row_idx) < 0.0)
         {
             _bUpperBound(row_idx) = 0.0;
         }
