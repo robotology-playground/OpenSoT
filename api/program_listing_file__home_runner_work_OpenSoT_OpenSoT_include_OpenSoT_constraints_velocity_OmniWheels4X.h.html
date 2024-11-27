@@ -117,12 +117,17 @@
                        <span class="n">XBot</span><span class="o">::</span><span class="n">ModelInterface</span><span class="o">&amp;</span> <span class="n">robot</span><span class="p">);</span>
            <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">();</span>
 
+           <span class="kt">void</span> <span class="nf">setIsGlobalVelocity</span><span class="p">(</span><span class="kt">bool</span> <span class="n">is_global_velocity</span><span class="p">)</span> <span class="p">{</span> <span class="n">_is_global_velocity</span> <span class="o">=</span> <span class="n">is_global_velocity</span><span class="p">;</span> <span class="p">}</span>
+
+           <span class="kt">bool</span> <span class="nf">getIsGlobalVelocity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_is_global_velocity</span><span class="p">;</span> <span class="p">}</span>
+
 
        <span class="k">private</span><span class="o">:</span>
            <span class="n">XBot</span><span class="o">::</span><span class="n">ModelInterface</span><span class="o">&amp;</span> <span class="n">_robot</span><span class="p">;</span>
            <span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span> <span class="n">_J</span><span class="p">;</span>
            <span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span> <span class="n">_w_T_b</span><span class="p">;</span>
            <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">_base_link</span><span class="p">;</span>
+           <span class="kt">bool</span> <span class="n">_is_global_velocity</span><span class="p">;</span>
        <span class="p">};</span>
 
        <span class="p">}</span>

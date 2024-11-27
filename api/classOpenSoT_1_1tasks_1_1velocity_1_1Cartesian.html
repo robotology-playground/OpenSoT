@@ -304,7 +304,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>desiredPose</strong> – the <span class="math notranslate nohighlight">\(R^{4x4}\)</span> homogeneous transform matrix describing the desired pose for the distal_link in the base_link frame of reference. </p></li>
-<li><p><strong>desireVelocity</strong> – is a <span class="math notranslate nohighlight">\(R^{6}\)</span> twist describing the desired trajectory velocity, and it represents a feed-forward term in the cartesian task computation. NOTICE how the velocities are in units/sample, instead of units/s. This means that if you have a twist expressed in SI units, you have to call the function as setReference(desiredPose, desiredTwist*dt) </p></li>
+<li><p><strong>desireTwist</strong> – is a <span class="math notranslate nohighlight">\(R^{6}\)</span> twist describing the desired trajectory velocity, and it represents a feed-forward term in the cartesian task computation. NOTICE how the velocities are in units/sample, instead of units/s. This means that if you have a twist expressed in SI units, you have to call the function as setReference(desiredPose, desiredTwist*dt) </p></li>
 </ul>
 </dd>
 </dl>
@@ -319,6 +319,17 @@
 <dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian12setReferenceERKN3KDL5FrameERKN3KDL5TwistE">
 <span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian12setReferenceERKN3KDL5FrameERKN3KDL5TwistE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian12setReferenceERKN3KDL5FrameERKN3KDL5TwistE"></span><span id="OpenSoT::tasks::velocity::Cartesian::setReference__KDL::FrameCR.KDL::TwistCR"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1a3ae57af5d5f92f0eb1e01fb03b243e9f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setReference</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">KDL</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Frame</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">desiredPose</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">KDL</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Twist</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">desiredTwist</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian12setReferenceERKN3KDL5FrameERKN3KDL5TwistE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian25setVelocityLocalReferenceERKN5Eigen8Vector6dE">
+<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian25setVelocityLocalReferenceERKN5Eigen8Vector6dE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian25setVelocityLocalReferenceERKN5Eigen8Vector6dE"></span><span id="OpenSoT::tasks::velocity::Cartesian::setVelocityLocalReference__Eigen::Vector6dCR"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1ac134ce613d513fbe08bf6a6b678f3cef"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setVelocityLocalReference</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector6d</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">desiredTwist</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian25setVelocityLocalReferenceERKN5Eigen8Vector6dE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>setVelocityLocalReference permits to set velocity expressed in local (ee) distal frame </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>desireTwist</strong> – is a <span class="math notranslate nohighlight">\(R^{6}\)</span> twist describing the desired trajectory velocity, and it represents a feed-forward term in the cartesian task computation. NOTICE how the velocities are in units/sample, instead of units/s. This means that if you have a twist expressed in SI units, you have to call the function as setVelocityLocalReference(desiredTwist*dt) </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK7OpenSoT5tasks8velocity9Cartesian12getReferenceERN5Eigen8Affine3dE">
@@ -480,12 +491,12 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian17setIsBodyJacobianEKb">
-<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian17setIsBodyJacobianEKb"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian17setIsBodyJacobianEKb"></span><span id="OpenSoT::tasks::velocity::Cartesian::setIsBodyJacobian__bC"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1a0645a08e851456160d5e62d9af72581d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setIsBodyJacobian</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">is_body_jacobian</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian17setIsBodyJacobianEKb" title="Permalink to this definition"></a><br /></dt>
-<dd><p>setIsBodyJacobian </p>
+<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian13rotateToLocalEKb">
+<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian13rotateToLocalEKb"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian13rotateToLocalEKb"></span><span id="OpenSoT::tasks::velocity::Cartesian::rotateToLocal__bC"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1af3051b29689ad6472547d7d897bf42ac"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rotateToLocal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rotate_to_local</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian13rotateToLocalEKb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>rotateToLocal rotates both Jacobian and references to local (ee) distal frame, this is mostly used for local subtasks </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>is_body_jacobian</strong> – if true jacobians are in body (ee reference) </p>
+<dd class="field-odd"><p><strong>rotate_to_local</strong> – default is false </p>
 </dd>
 </dl>
 </dd></dl>
@@ -617,8 +628,13 @@
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian17_is_body_jacobianE">
-<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian17_is_body_jacobianE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian17_is_body_jacobianE"></span><span id="OpenSoT::tasks::velocity::Cartesian::_is_body_jacobian__b"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1a1993ff39ca5d8977c99373778b7e53ac"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_is_body_jacobian</span></span></span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian17_is_body_jacobianE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian16_rotate_to_localE">
+<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian16_rotate_to_localE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian16_rotate_to_localE"></span><span id="OpenSoT::tasks::velocity::Cartesian::_rotate_to_local__b"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1a6b3af92ee89e9e2e66999d84b4eff5d7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_rotate_to_local</span></span></span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian16_rotate_to_localE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian24_velocity_refs_are_localE">
+<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian24_velocity_refs_are_localE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian24_velocity_refs_are_localE"></span><span id="OpenSoT::tasks::velocity::Cartesian::_velocity_refs_are_local__b"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1a274eaaa055f55718dd18cae1058bc4d9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_velocity_refs_are_local</span></span></span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian24_velocity_refs_are_localE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
@@ -629,6 +645,11 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian6_tmp_bE">
 <span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian6_tmp_bE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian6_tmp_bE"></span><span id="OpenSoT::tasks::velocity::Cartesian::_tmp_b__Eigen::VectorXd"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1aece9c8020f3ed7cc91867ecfc98e9cfe"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">VectorXd</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_tmp_b</span></span></span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian6_tmp_bE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7OpenSoT5tasks8velocity9Cartesian10_tmp_twistE">
+<span id="_CPPv3N7OpenSoT5tasks8velocity9Cartesian10_tmp_twistE"></span><span id="_CPPv2N7OpenSoT5tasks8velocity9Cartesian10_tmp_twistE"></span><span id="OpenSoT::tasks::velocity::Cartesian::_tmp_twist__Eigen::Vector6d"></span><span class="target" id="classOpenSoT_1_1tasks_1_1velocity_1_1Cartesian_1a639dbde2359a89fa6a85dae8a366a88e"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector6d</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_tmp_twist</span></span></span><a class="headerlink" href="#_CPPv4N7OpenSoT5tasks8velocity9Cartesian10_tmp_twistE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>

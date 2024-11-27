@@ -79,10 +79,13 @@ Program Listing for File Cartesian.h
                    Eigen::Vector3d positionError;
                    Eigen::Vector3d orientationError;
    
-                   bool _is_body_jacobian;
+                   bool _rotate_to_local;
+                   bool _velocity_refs_are_local;
    
                    Eigen::MatrixXd _tmp_A;
                    Eigen::VectorXd _tmp_b;
+   
+                   Eigen::Vector6d _tmp_twist;
    
                public:
                    /*********** TASK PARAMETERS ************/
@@ -110,6 +113,8 @@ Program Listing for File Cartesian.h
                                      const Eigen::Vector6d& desiredTwist);
                    void setReference(const KDL::Frame& desiredPose,
                                      const KDL::Twist& desiredTwist);
+   
+                   void setVelocityLocalReference(const Eigen::Vector6d& desiredTwist);
    
                    void getReference(Eigen::Affine3d& desiredPose) const;
                    const Eigen::Matrix4d& getReference() const;
@@ -146,7 +151,7 @@ Program Listing for File Cartesian.h
    
                    virtual bool reset();
    
-                   void setIsBodyJacobian(const bool is_body_jacobian);
+                   void rotateToLocal(const bool rotate_to_local);
                    
                    static bool isCartesian(OpenSoT::Task<Eigen::MatrixXd, Eigen::VectorXd>::TaskPtr task);
    

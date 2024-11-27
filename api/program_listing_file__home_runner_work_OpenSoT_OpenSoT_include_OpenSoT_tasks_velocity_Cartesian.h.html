@@ -150,10 +150,13 @@
                 <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="n">positionError</span><span class="p">;</span>
                 <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="n">orientationError</span><span class="p">;</span>
 
-                <span class="kt">bool</span> <span class="n">_is_body_jacobian</span><span class="p">;</span>
+                <span class="kt">bool</span> <span class="n">_rotate_to_local</span><span class="p">;</span>
+                <span class="kt">bool</span> <span class="n">_velocity_refs_are_local</span><span class="p">;</span>
 
                 <span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span> <span class="n">_tmp_A</span><span class="p">;</span>
                 <span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span> <span class="n">_tmp_b</span><span class="p">;</span>
+
+                <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector6d</span> <span class="n">_tmp_twist</span><span class="p">;</span>
 
             <span class="k">public</span><span class="o">:</span>
                 <span class="cm">/*********** TASK PARAMETERS ************/</span>
@@ -181,6 +184,8 @@
                                   <span class="k">const</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector6d</span><span class="o">&amp;</span> <span class="n">desiredTwist</span><span class="p">);</span>
                 <span class="kt">void</span> <span class="nf">setReference</span><span class="p">(</span><span class="k">const</span> <span class="n">KDL</span><span class="o">::</span><span class="n">Frame</span><span class="o">&amp;</span> <span class="n">desiredPose</span><span class="p">,</span>
                                   <span class="k">const</span> <span class="n">KDL</span><span class="o">::</span><span class="n">Twist</span><span class="o">&amp;</span> <span class="n">desiredTwist</span><span class="p">);</span>
+
+                <span class="kt">void</span> <span class="nf">setVelocityLocalReference</span><span class="p">(</span><span class="k">const</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector6d</span><span class="o">&amp;</span> <span class="n">desiredTwist</span><span class="p">);</span>
 
                 <span class="kt">void</span> <span class="nf">getReference</span><span class="p">(</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Affine3d</span><span class="o">&amp;</span> <span class="n">desiredPose</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
                 <span class="k">const</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix4d</span><span class="o">&amp;</span> <span class="n">getReference</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
@@ -217,7 +222,7 @@
 
                 <span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">reset</span><span class="p">();</span>
 
-                <span class="kt">void</span> <span class="nf">setIsBodyJacobian</span><span class="p">(</span><span class="k">const</span> <span class="kt">bool</span> <span class="n">is_body_jacobian</span><span class="p">);</span>
+                <span class="kt">void</span> <span class="nf">rotateToLocal</span><span class="p">(</span><span class="k">const</span> <span class="kt">bool</span> <span class="n">rotate_to_local</span><span class="p">);</span>
 
                 <span class="k">static</span> <span class="kt">bool</span> <span class="nf">isCartesian</span><span class="p">(</span><span class="n">OpenSoT</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="n">Eigen</span><span class="o">::</span><span class="n">MatrixXd</span><span class="p">,</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">VectorXd</span><span class="o">&gt;::</span><span class="n">TaskPtr</span> <span class="n">task</span><span class="p">);</span>
 
