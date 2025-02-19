@@ -40,6 +40,7 @@ PYBIND11_MODULE(pyopensot, m) {
     pyVelocityGaze(m_tv);
     pyVelocityManipulability(m_tv);
     pyVelocityMinimumEffort(m_tv);
+    pyVelocityCollisionAvoidanceTask(m_tv);
 
     auto m_ta = m_t.def_submodule("acceleration");
     pyAccelerationPostural(m_ta);
