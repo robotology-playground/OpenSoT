@@ -24,6 +24,9 @@ if(${pybind11_FOUND})
                                   constraints/force.hpp)
     target_link_libraries(pyopensot PUBLIC OpenSoT)
 
+    if(${OPENSOT_SOTH_FRONT_END})
+        target_compile_definitions(pyopensot PRIVATE -DOPENSOT_SOTH_FRONT_END)
+    endif()
 
     find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 

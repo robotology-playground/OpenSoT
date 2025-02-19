@@ -103,6 +103,7 @@ void pynHQP(py::module& m) {
 }
 
 void pyHCOD(py::module& m) {
+#ifdef OPENSOT_SOTH_FRONT_END
     py::class_<solvers::HCOD, std::shared_ptr<solvers::HCOD>, OpenSoT::Solver<Eigen::MatrixXd, Eigen::VectorXd>>(m, "HCOD")
         .def(py::init<OpenSoT::AutoStack&, const double>())
         .def(py::init<OpenSoT::Solver<Eigen::MatrixXd, Eigen::VectorXd>::Stack&, OpenSoT::Solver<Eigen::MatrixXd, Eigen::VectorXd>::ConstraintPtr, const double>())
@@ -111,4 +112,5 @@ void pyHCOD(py::module& m) {
         .def("getDisableWeightsComputation", &solvers::HCOD::getDisableWeightsComputation)
         .def("setDamping", &solvers::HCOD::setDamping)
         .def("printSOT", &solvers::HCOD::printSOT);
+#endif
 }
