@@ -22,11 +22,9 @@ void CollisionAvoidance::_update()
     // error is good if positive
     _constr->getError(_error);
 
-    std::cout << _error.minCoeff() << "\n";
-
     // compute
-    _A.setZero();
-    _b.setZero();
+    _A = _constr->getAineq();
+    _b = _constr->getbUpperBound().cwiseMin(0.0);
 
     const auto& Aineq = _constr->getAineq();
 
@@ -34,16 +32,6 @@ void CollisionAvoidance::_update()
     // J*dq = -e
     // note that Aineq = -J
 
-    for(int i = 0; i < _error.size(); i++)
-    {
-        if(_error(i) > 0)
-        {
-            continue;
-        }
-
-        _A.row(i) = Aineq.row(i);
-        _b(i) = _error[i];
-    }
 }
 
 OpenSoT::constraints::velocity::CollisionAvoidance::Ptr CollisionAvoidance::getConstraint()
