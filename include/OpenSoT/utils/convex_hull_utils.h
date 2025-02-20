@@ -32,6 +32,7 @@
 #include <pcl/surface/concave_hull.h>
 #include <pcl/surface/convex_hull.h>
 #include <xbot2_interface/xbotinterface2.h>
+#include <list>
 
 class convex_hull
 {
