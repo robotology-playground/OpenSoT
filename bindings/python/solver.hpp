@@ -26,7 +26,10 @@ template<typename MatrixType, typename VectorType>
 VectorType solve(Solver<MatrixType, VectorType>& solver)
 {
     VectorType solution;
-    solver.solve(solution);
+    if(!solver.solve(solution))
+    {
+        throw std::runtime_error("solve failed");
+    }
     return solution;
 }
 
